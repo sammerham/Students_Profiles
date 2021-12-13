@@ -51,8 +51,10 @@ function App() {
     setSearchTerm(value.trim());
   };
 
-
-   // fn to filter student by firstName, lastName, or full name
+  
+  // //* Filter all students that match searchTerm AND searchTag
+  
+  // fn to filter student by firstName, lastName, or full name
   const filterByName = (student) => {
     const hasFirst = searchTerm && student.firstName.toLowerCase().includes(searchTerm.toLowerCase());
     const fullName = student.firstName.toLowerCase() + " " + student.lastName.toLowerCase();
@@ -75,7 +77,7 @@ function App() {
     }
   }
 
-   // fn to filter student by tag
+  // fn to filter student by tag
   const filterByTag = (student) => {
     const hasTags = student.tags?.some(t => t.toLowerCase().includes(searchTag.toLowerCase()));
     // if search tag is empty, show all students
@@ -91,8 +93,6 @@ function App() {
   const newstudents = students
     .filter(student => filterByName(student))
     .filter(student => filterByTag(student));
-  
-
   return (
     <div className="App">
       <SearchBar handleChangeSearch={handleChangeSearch} handleChangeTag={handleChangeTag} />

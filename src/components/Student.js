@@ -31,7 +31,7 @@ function Student({ student, addStudentTags}) {
   const [newTag, setNewTag] = useState('');
   const { email, firstName, lastName, pic, skill, grades, company, id , tags=[]} = student;
 
-  // calculate avg score from grades
+  // calculate avg score from grades - sum / length
   const average = useMemo(()=> grades.reduce((acc, n) => acc + (+n), 0) / grades.length, [grades])
    
   // fn to toggle clicked state 
@@ -43,7 +43,7 @@ function Student({ student, addStudentTags}) {
     }
   }
 
-  // handle change 
+  // handle change tag
   const handleChange = e => {
     const { value } = e.target;
     setNewTag(value);

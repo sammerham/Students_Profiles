@@ -11,7 +11,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchTag, setSearchTag] = useState('');
 
-
+  console.log('students in app', students)
   // fetch data from API on first render
   useEffect(() => {
     async function fetchData() {
@@ -55,11 +55,12 @@ function App() {
   // //* Filter all students that match searchTerm AND searchTag
   
   // fn to filter student by firstName, lastName, or full name
-  const filterByName = (student) => {
+  const filterByName = (student, searchTerm) => {
     const hasFirst = searchTerm && student.firstName.toLowerCase().includes(searchTerm.toLowerCase());
+    const hasLast = searchTerm && student.lastName.toLowerCase().includes(searchTerm.toLowerCase());
     const fullName = student.firstName.toLowerCase() + " " + student.lastName.toLowerCase();
     const hasFullName = searchTerm && fullName.includes(searchTerm.toLowerCase());
-    const hasLast = searchTerm && student.lastName.toLowerCase().includes(searchTerm.toLowerCase());
+
 
     // if search terms is empty, show all students
     if (searchTerm === '') {
@@ -78,11 +79,11 @@ function App() {
   }
 
   // fn to filter student by tag
-  const filterByTag = (student) => {
+  const filterByTag = (student, searchTag) => {
     const hasTags = student.tags?.some(t => t.toLowerCase().includes(searchTag.toLowerCase()));
     // if search tag is empty, show all students
     if (searchTag === '') {
-      return student;
+      return true;
     }
     // if anything matches, show it
     if (searchTag !== '') {
@@ -91,8 +92,8 @@ function App() {
   }
   //* Filter all students that match searchTerm AND searchTag
   const newstudents = students
-    .filter(student => filterByName(student))
-    .filter(student => filterByTag(student));
+    .filter(student => filterByName(student, searchTerm))
+    .filter(student => filterByTag(student, searchTag));
   return (
     <div className="App">
       <SearchBar handleChangeSearch={handleChangeSearch} handleChangeTag={handleChangeTag} />

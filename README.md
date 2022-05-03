@@ -1,3 +1,11 @@
+# Students Profiles
+FrontEnd app made with React, has nice search and filter functionality.
+App on load, fetches students info from API and there are two search bars that synced together and filter the students lists instantly as you search for students (first name, last name or full name) and if the student has tag or not.
+- It also has a feature to add a tag to students.
+
+_ Deployed Verion can be viwed at https://studentsprofiles.netlify.app
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
